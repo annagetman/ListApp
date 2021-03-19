@@ -17,7 +17,25 @@ namespace ListApp
             _array = new int[10];
         }
 
-
+        public int this[int index]
+        {
+            get
+            {
+                if(index>Length-1 || index <0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _array[index];
+            }
+            set
+            {
+                if (index > Length - 1 || index <0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _array[index] = value;
+            }
+        }
 
 
         //добавление значения в конец
@@ -166,7 +184,7 @@ namespace ListApp
         {
             for(int i =0; i<=Length/2-1; i++)
             {
-                Swap(ref _array[i])
+                Swap(ref _array[i], ref _array[Length - i - 1]);
             }
 
         }
@@ -216,6 +234,12 @@ namespace ListApp
         //добавление списка по индексу
 
 
+        private void Swap(ref int a, ref int b)
+        {
+            temp = a;
+            a = b;
+            b = temp;
+        }
         private void UpSize()
         {
             int newLength = (int)(_array.Length * 1.33d + 1);
