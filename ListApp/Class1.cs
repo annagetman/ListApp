@@ -18,6 +18,8 @@ namespace ListApp
         }
 
 
+
+
         //добавление значения в конец
         public void Add(int value)
         {
@@ -52,39 +54,80 @@ namespace ListApp
 
         //добавление значения по индексу
 
-        public void AddByIndex(int value)
+        public void AddValueByIndex(int value, int index)
         {
-          
-        }
+            if (index < Lenght && index >= 0)
+            {
+                ReSize();
 
+                for (int i = Lenght - 1; i <= index; i--)
+                {
+                    _array[i + 1] = _array[i];
+                }
+
+                _array[index] = value;
+                ++Lenght;
+            }
+
+            throw new Exception("Error");
+        }
+      
         //удаление из конца одного элемента
 
-        public void RemoveElementFromEnd(int value)
+        public void RemoveElementFromEnd()
         {
+            ReSize();
+
+            Lenght--;
 
         }
 
         //удаление из начала одного элемента
-        public void RemoveElementFromStart(int value)
+        public void RemoveElementFromStart()
         {
+            ReSize();
 
+            for (int i = Lenght - 1; i >= 0; i--)
+            {
+                _array[i + 1] = _array[i];
+            }
+
+            Lenght--;
         }
 
         //удаление по индексу одного элемента
-        public void RemoveElementByIndex(int value)
+        public void RemoveElementByIndex(int index)
         {
+            if (index < Lenght && index >= 0)
+            {
+                ReSize();
 
+                for (int i = Lenght - 1; i <= index; i--)
+                {
+                    _array[i + 1] = _array[i];
+                }
+
+                Lenght--;
+            }
         }
 
         //удаление из конца N элементов
-        public void RemoveNElementsFromEnd(int value)
+        public void RemoveNElementsFromEnd(int Nvalue)
         {
-
+            Lenght -= Nvalue;
+            ReSize();
         }
 
+
         //удаление из начала N элементов
-        public void RemoveNElementsFromStart(int value)
+        public void RemoveNElementsFromStart(int Nvalue)
         {
+            for (int i = Nvalue + 1; i < Lenght - 1; i -= Nvalue)
+            {
+                _array[i + Nvalue] = _array[i];
+            }
+
+            ReSize();
 
         }
 
@@ -121,6 +164,10 @@ namespace ListApp
         //реверс(123 -> 321)
         public void Reverse(int value)
         {
+            for(int i =0; i<=Length/2-1; i++)
+            {
+                Swap(ref _array[i])
+            }
 
         }
 
@@ -178,5 +225,23 @@ namespace ListApp
                 tmpArray[i] = _array[i];
             }
         }
-    }
+
+        private void ReSize()
+        {
+            if ((Lenght >= _array.Length) || (Lenght <= _array.Length / 2))
+            {
+                int newLenght = (int)(_array.Length * 1.33 + 1);
+                int[] tmpArray = new int[newLenght];
+
+                for (int i = 0; i < Lenght; i++)
+                {
+                    tmpArray[i] = _array[i];
+                }
+
+                _array = tmpArray;
+            }
+
+
+
+        }
 }
