@@ -5,7 +5,6 @@ namespace ListApp
     public class ArrayList
     {
        
-
         public int Length { get; private set; }
 
         private int[] _array;
@@ -50,7 +49,6 @@ namespace ListApp
         }
 
  
-
         //добавление значения в начало
 
         public void AddToStart(int value)
