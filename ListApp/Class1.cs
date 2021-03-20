@@ -37,6 +37,24 @@ namespace ListApp
         }
 
 
+        public ArrayList(int [] values)
+        {
+            if (values != null)
+            {
+                Length = values.Length;
+                _array = new int(int)(values.Length * 2)];
+                for (int i = 0; i < Length; i++)
+                {
+                    _array[i] = values[i];
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Array is null");
+            }
+        }
+
+
         //добавление значения в конец
         public void Add(int value)
         {
@@ -148,14 +166,14 @@ namespace ListApp
         }
 
         //удаление по индексу N элементов
-        public void RemoveNElementByIndex(int value)
+        public void RemoveNElementByIndex(int index, int Nvalue)
         {
+            for (int i = index + 1; i < Lenght - Nvalue; i -= Nvalue)
+            {
+                _array[i + Nvalue] = _array[i];
+            }
 
-        }
-
-        //вернуть длину
-        public void ReturnLength(int value)
-        {
+            ReSize();
 
         }
 
@@ -190,26 +208,57 @@ namespace ListApp
         //поиск значения максимального элемента
         public void SearchValueMaxElement(int value)
         {
+            for (int i = 1; i < arr1.Length; i++)
+            {
+                if (arr1[i] > max)
+                {
+                    max = arr1[i];
+                }
+            }
+            return max;
+
 
         }
 
         //поиск значения минимального элемента
         public void SearchValueMinElement(int value)
         {
+            for (int i = 1; i < arr1.Length; i++)
+            {
+                if (arr1[i] < min)
+                {
+                    minIndex = i;
+                }
+            }
+            return minIndex;
 
         }
 
         //поиск индекс максимального элемента
         public void SearchIndexMaxElement(int value)
         {
-
+            for (int i = 1; i < arr1.Length; i++)
+            {
+                if (arr1[i] > max)
+                {
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
         }
 
         //поиск индекс минимального элемента
 
         public void SearchIndexMinElement(int value)
         {
-
+            for (int i = 1; i < arr1.Length; i++)
+            {
+                if (arr1[i] < min)
+                {
+                    minIndex = i;
+                }
+            }
+            return minIndex;
         }
 
         //сортировка по возрастанию
