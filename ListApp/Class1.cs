@@ -184,8 +184,20 @@ namespace ListApp
         }
 
         //первый индекс по значению
-        public void FirstIndexByValue(int value)
+        public void SearchFirstIndexByValue(int value)
         {
+            if (Length != 0)
+            {
+                for (int i = 0; i < Length; i++)
+                {
+                    if (_array[i].CompareTo(value) == 0)
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return -1;
 
         }
 
@@ -196,7 +208,7 @@ namespace ListApp
         }
 
         //реверс(123 -> 321)
-        public void Reverse(int value)
+        public void ReverseArray(int value)
         {
             for (int i = 0; i <= Length / 2 - 1; i++)
             {
@@ -272,9 +284,53 @@ namespace ListApp
         }
 
         //удаление по значению первого(?вернуть индекс)
+
+        public int RemoveElementByValue(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i].CompareTo(value) == 0)
+                {
+                    RemoveByIndex(i);
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
         //удаление по значению всех(?вернуть кол-во)
+
+        public int RemoveAllElementsByValue(int value)
+        {
+            int countRemoveElements = 0;
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i].CompareTo(value) == 0)
+                {
+                    RemoveByIndex(i);
+                    --i;
+                    ++countRemoveElements;
+                }
+            }
+
+            return countRemoveElements;
+        }
+
+
+
+
+
+
+
+
+
         //3 конструктора(пустой, на основе одного элемента, на основе массива )
         //добавление списка(вашего самодельного) в конец
+
+
+
+
 
         public void AddArrayList(ArrayList list)
         {
@@ -345,6 +401,56 @@ namespace ListApp
                 throw new ArgumentException("The list contains no elements");
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+        public override string ToString()
+        {
+            string result = string.Empty;
+            for (int i = 0; i < Length; i++)
+            {
+                result += _array[i] + " ";
+            }
+
+            return result;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ArrayList)
+            {
+                ArrayList list = (ArrayList)obj;
+                bool result = true;
+                if (this.Length == list.Length)
+                {
+                    for (int i = 0; i < Length; i++)
+                    {
+                        if (!this._array[i].Equals(list._array[i]))
+                        {
+                            result = false;
+                        }
+                    }
+                }
+                else
+                {
+                    result = false;
+                }
+
+                return result;
+            }
+
+            return false;
+        }
+
 
 
 
