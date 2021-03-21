@@ -4,7 +4,7 @@ namespace ListApp
 {
     public class ArrayList
     {
-       
+
         public int Length { get; private set; }
 
         private int[] _array;
@@ -20,7 +20,7 @@ namespace ListApp
         {
             get
             {
-                if(index>Length-1 || index <0)
+                if (index > Length - 1 || index < 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -28,7 +28,7 @@ namespace ListApp
             }
             set
             {
-                if (index > Length - 1 || index <0)
+                if (index > Length - 1 || index < 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -37,12 +37,12 @@ namespace ListApp
         }
 
 
-        public ArrayList(int [] values)
+        public ArrayList(int[] values)
         {
             if (values != null)
             {
                 Length = values.Length;
-                _array = new int(int)(values.Length * 2)];
+                _array = new int[(int)(values.Length * 2)];
                 for (int i = 0; i < Length; i++)
                 {
                     _array[i] = values[i];
@@ -66,7 +66,7 @@ namespace ListApp
             Length++;
         }
 
- 
+
         //добавление значения в начало
 
         public void AddToStart(int value)
@@ -105,7 +105,7 @@ namespace ListApp
 
             throw new Exception("Error");
         }
-      
+
         //удаление из конца одного элемента
 
         public void RemoveElementFromEnd()
@@ -198,7 +198,7 @@ namespace ListApp
         //реверс(123 -> 321)
         public void Reverse(int value)
         {
-            for(int i =0; i<=Length/2-1; i++)
+            for (int i = 0; i <= Length / 2 - 1; i++)
             {
                 Swap(ref _array[i], ref _array[Length - i - 1]);
             }
@@ -216,8 +216,6 @@ namespace ListApp
                 }
             }
             return max;
-
-
         }
 
         //поиск значения минимального элемента
@@ -277,8 +275,77 @@ namespace ListApp
         //удаление по значению всех(?вернуть кол-во)
         //3 конструктора(пустой, на основе одного элемента, на основе массива )
         //добавление списка(вашего самодельного) в конец
+
+        public void AddArrayList(ArrayList list)
+        {
+            if (list != null && list.Length != 0)
+            {
+                int lastIndex = Length;
+                AddArrayListByIndex(list, lastIndex);
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
+            }
+        }
         //добавление списка в начало
+
+        public void AddArrayListToStart(ArrayList list)
+        {
+            if (list != null && list.Length != 0)
+            {
+                int firstIndex = 0;
+                AddArrayListByIndex(list, firstIndex);
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
+            }
+        }
+
         //добавление списка по индексу
+
+        public void AddArrayListByIndex(ArrayList list, int index)
+        {
+            if (list != null && list.Length != 0)
+            {
+                if (index >= 0 && index <= Length)
+                {
+                    Length += list.Length;
+                    if (Length >= _array.Length)
+                    {
+                        UpSize();
+                    }
+
+                    int n = list.Length;
+                    for (int i = Length - 1; i >= index; i--)
+                    {
+                        if (i + n < _array.Length)
+                        {
+                            _array[i + n] = _array[i];
+                        }
+                    }
+
+                    int count = 0;
+                    for (int i = index; i < Length; i++)
+                    {
+                        if (count < list.Length)
+                        {
+                            _array[i] = list[count++];
+                        }
+                    }
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
+            }
+        }
+
 
 
         private void Swap(ref int a, ref int b)
@@ -287,15 +354,15 @@ namespace ListApp
             a = b;
             b = temp;
         }
-        private void UpSize()
-        {
-            int newLength = (int)(_array.Length * 1.33d + 1);
-            int[] tmpArray = new int[newLength];
-            for (int i = 0; i < _array.Length; i++)
-            {
-                tmpArray[i] = _array[i];
-            }
-        }
+        //private void UpSize()
+        //{
+        //    int newLength = (int)(_array.Length * 1.33d + 1);
+        //    int[] tmpArray = new int[newLength];
+        //    for (int i = 0; i < _array.Length; i++)
+        //    {
+        //        tmpArray[i] = _array[i];
+        //    }
+        //}
 
         private void ReSize()
         {
@@ -314,5 +381,10 @@ namespace ListApp
 
 
 
+
+
+
+
+
         }
-}
+    }
