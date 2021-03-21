@@ -139,20 +139,23 @@ namespace ListApp
         }
 
         //удаление по индексу одного элемента
+
         public void RemoveElementByIndex(int index)
         {
-            if (index < Length && index >= 0)
+            if (index >= 0 && index <= Length)
             {
-                ReSize();
+             
+                    for (int i = index; i < Length; i++)
+                    {
+                        _array[i] = _array[i + 1];
+                    }
 
-                for (int i = Length - 1; i <= index; i--)
-                {
-                    _array[i + 1] = _array[i];
-                }
-
-                Length--;
+                    --Length;
+                    ReSize();
             }
+            
         }
+
 
         //удаление из конца N элементов
         public void RemoveNElementsFromEnd(int Nvalue)
@@ -453,7 +456,11 @@ namespace ListApp
         }
 
 
-
+        public void Remove()
+        {
+            int lastIndex = Length - 1;
+            RemoveElementByIndex(lastIndex);
+        }
 
         private void Swap(ref int a, ref int b)
         {

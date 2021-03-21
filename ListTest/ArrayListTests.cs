@@ -89,10 +89,9 @@ namespace ListApp.Tests
         }
 
 
-        [TestCase(1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 0 })]
-        [TestCase(2, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 0 })]
-        [TestCase(3, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 0 })]
-        [TestCase(6, new int[] { 1, 2, 3, 4, 5 }, new int[] { 0 })]
+        [TestCase(1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4 })]
+        [TestCase(2, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3 })]
+        [TestCase(3, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2 })]
 
         public void Remove_NElementsFromEnd(int Nvalue, int[] actualArray, int[] expectedArray)
         {
@@ -100,16 +99,15 @@ namespace ListApp.Tests
             ArrayList expected = new ArrayList(expectedArray);
 
             actual.RemoveNElementsFromEnd(Nvalue);
-            //expected.Remove();
 
             Assert.AreEqual(expected, actual);
         }
 
 
-        [TestCase(0, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5, 0 })]
-        [TestCase(1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5, 0 })]
-        [TestCase(2, new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 5, 0 })]
-        [TestCase(3, new int[] { 1, 2, 3, 4, 5 }, new int[] { 4, 5, 0 })]
+        [TestCase(0, new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 })]
+        [TestCase(1, new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 })]
+        [TestCase(2, new int[] { 1, 2, 3, 4, 5 }, new int[] { 3, 4, 5 })]
+        [TestCase(3, new int[] { 1, 2, 3, 4, 5 }, new int[] { 4, 5 })]
 
         public void RemoveNElementsFromStart(int Nvalue, int[] actualArray, int[] expectedArray)
         {
@@ -117,7 +115,6 @@ namespace ListApp.Tests
             ArrayList expected = new ArrayList(expectedArray);
 
             actual.RemoveNElementsFromStart(Nvalue);
-           // expected.Remove();
 
             Assert.AreEqual(expected, actual);
         }
@@ -151,8 +148,8 @@ namespace ListApp.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1})]
-        [TestCase(new int[] { 0, 0,  }, new int[] { 0, 0,  })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
+        [TestCase(new int[] { 0, 0, }, new int[] { 0, 0, })]
         [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
         public void Reverse_Array(int[] actualArray, int[] expectedArray)
         {
