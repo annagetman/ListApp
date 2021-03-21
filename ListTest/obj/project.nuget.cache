@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g+ymYwSgD86Cv8UYrMv7nE1OaCQglsvoM7/ut74sUIm8cx9cvZ/LJ/Rct0ao39g2263ArMcTPBFn/nuBFyP2tw==",
+  "dgSpecHash": "cCVZVxc66VvVZPWMJuGxojourJp1xCEnH9VQOFTnjL2s2jWUbVTXctfRpxwhqkDOoYa+r1E5AlquI/+c8ggTBQ==",
   "success": true,
-  "projectFilePath": "G:\\ann\\work\\ListApp\\ListTest\\ListTest.csproj",
+  "projectFilePath": "G:\\ann\\work\\ListApp\\ListTest\\ListApp.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ann\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\ann\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

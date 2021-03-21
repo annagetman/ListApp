@@ -2,3 +2,8 @@ G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.csprojAssemblyRefere
 G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.AssemblyInfoInputs.cache
 G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.AssemblyInfo.cs
 G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.csproj.CoreCompileInputs.cache
+G:\ann\work\ListApp\ListApp\bin\Debug\netcoreapp3.1\ListApp.deps.json
+G:\ann\work\ListApp\ListApp\bin\Debug\netcoreapp3.1\ListApp.dll
+G:\ann\work\ListApp\ListApp\bin\Debug\netcoreapp3.1\ListApp.pdb
+G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.dll
+G:\ann\work\ListApp\ListApp\obj\Debug\netcoreapp3.1\ListApp.pdb

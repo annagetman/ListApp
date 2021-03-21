@@ -4644,9 +4644,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\ann\\work\\ListApp\\ListTest\\ListTest.csproj",
-      "projectName": "ListTest",
-      "projectPath": "G:\\ann\\work\\ListApp\\ListTest\\ListTest.csproj",
+      "projectUniqueName": "G:\\ann\\work\\ListApp\\ListTest\\ListApp.Tests.csproj",
+      "projectName": "ListApp.Tests",
+      "projectPath": "G:\\ann\\work\\ListApp\\ListTest\\ListApp.Tests.csproj",
       "packagesPath": "C:\\Users\\ann\\.nuget\\packages\\",
       "outputPath": "G:\\ann\\work\\ListApp\\ListTest\\obj\\",
       "projectStyle": "PackageReference",

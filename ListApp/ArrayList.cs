@@ -16,6 +16,15 @@ namespace ListApp
             _array = new int[10];
         }
 
+        public ArrayList(int value)
+        {
+            Length = 0;
+
+            _array = new int[10];
+
+            _array[0] = value;
+        }
+
         public int this[int index]
         {
             get
@@ -60,7 +69,7 @@ namespace ListApp
         {
             if (Length == _array.Length)
             {
-                UpSize();
+                ReSize();
             }
             _array[Length] = value;
             Length++;
@@ -73,7 +82,7 @@ namespace ListApp
         {
             if (Length == _array.Length)
             {
-                UpSize();
+                ReSize();
             }
 
             for (int i = Length; i >= 0; --i)
@@ -90,17 +99,17 @@ namespace ListApp
 
         public void AddValueByIndex(int value, int index)
         {
-            if (index < Lenght && index >= 0)
+            if (index < Length && index >= 0)
             {
                 ReSize();
 
-                for (int i = Lenght - 1; i <= index; i--)
+                for (int i = Length - 1; i <= index; i--)
                 {
                     _array[i + 1] = _array[i];
                 }
 
                 _array[index] = value;
-                ++Lenght;
+                ++Length;
             }
 
             throw new Exception("Error");
@@ -112,7 +121,7 @@ namespace ListApp
         {
             ReSize();
 
-            Lenght--;
+            Length--;
 
         }
 
@@ -121,34 +130,34 @@ namespace ListApp
         {
             ReSize();
 
-            for (int i = Lenght - 1; i >= 0; i--)
+            for (int i = Length - 1; i >= 0; i--)
             {
                 _array[i + 1] = _array[i];
             }
 
-            Lenght--;
+            Length--;
         }
 
         //удаление по индексу одного элемента
         public void RemoveElementByIndex(int index)
         {
-            if (index < Lenght && index >= 0)
+            if (index < Length && index >= 0)
             {
                 ReSize();
 
-                for (int i = Lenght - 1; i <= index; i--)
+                for (int i = Length - 1; i <= index; i--)
                 {
                     _array[i + 1] = _array[i];
                 }
 
-                Lenght--;
+                Length--;
             }
         }
 
         //удаление из конца N элементов
         public void RemoveNElementsFromEnd(int Nvalue)
         {
-            Lenght -= Nvalue;
+            Length -= Nvalue;
             ReSize();
         }
 
@@ -156,7 +165,7 @@ namespace ListApp
         //удаление из начала N элементов
         public void RemoveNElementsFromStart(int Nvalue)
         {
-            for (int i = Nvalue + 1; i < Lenght - 1; i -= Nvalue)
+            for (int i = Nvalue + 1; i < Length - 1; i -= Nvalue)
             {
                 _array[i + Nvalue] = _array[i];
             }
@@ -168,7 +177,7 @@ namespace ListApp
         //удаление по индексу N элементов
         public void RemoveNElementByIndex(int index, int Nvalue)
         {
-            for (int i = index + 1; i < Lenght - Nvalue; i -= Nvalue)
+            for (int i = index + 1; i < Length - Nvalue; i -= Nvalue)
             {
                 _array[i + Nvalue] = _array[i];
             }
@@ -184,7 +193,7 @@ namespace ListApp
         }
 
         //первый индекс по значению
-        public void SearchFirstIndexByValue(int value)
+        public int SearchFirstIndexByValue(int value)
         {
             if (Length != 0)
             {
@@ -218,58 +227,58 @@ namespace ListApp
         }
 
         //поиск значения максимального элемента
-        public void SearchValueMaxElement(int value)
-        {
-            for (int i = 1; i < arr1.Length; i++)
-            {
-                if (arr1[i] > max)
-                {
-                    max = arr1[i];
-                }
-            }
-            return max;
-        }
+        //public void SearchValueMaxElement(int value)
+        //{
+        //    for (int i = 1; i < arr1.Length; i++)
+        //    {
+        //        if (arr1[i] > max)
+        //        {
+        //            max = arr1[i];
+        //        }
+        //    }
+        //    return max;
+        //}
 
         //поиск значения минимального элемента
-        public void SearchValueMinElement(int value)
-        {
-            for (int i = 1; i < arr1.Length; i++)
-            {
-                if (arr1[i] < min)
-                {
-                    minIndex = i;
-                }
-            }
-            return minIndex;
+        //public void SearchValueMinElement(int value)
+        //{
+        //    for (int i = 1; i < arr1.Length; i++)
+        //    {
+        //        if (arr1[i] < min)
+        //        {
+        //            minIndex = i;
+        //        }
+        //    }
+        //    return minIndex;
 
-        }
+        //}
 
         //поиск индекс максимального элемента
-        public void SearchIndexMaxElement(int value)
-        {
-            for (int i = 1; i < arr1.Length; i++)
-            {
-                if (arr1[i] > max)
-                {
-                    maxIndex = i;
-                }
-            }
-            return maxIndex;
-        }
+        //public void SearchIndexMaxElement(int value)
+        //{
+        //    for (int i = 1; i < arr1.Length; i++)
+        //    {
+        //        if (arr1[i] > max)
+        //        {
+        //            maxIndex = i;
+        //        }
+        //    }
+        //    return maxIndex;
+        //}
 
         //поиск индекс минимального элемента
 
-        public void SearchIndexMinElement(int value)
-        {
-            for (int i = 1; i < arr1.Length; i++)
-            {
-                if (arr1[i] < min)
-                {
-                    minIndex = i;
-                }
-            }
-            return minIndex;
-        }
+        //public void SearchIndexMinElement(int value)
+        //{
+        //    for (int i = 1; i < arr1.Length; i++)
+        //    {
+        //        if (arr1[i] < min)
+        //        {
+        //            minIndex = i;
+        //        }
+        //    }
+        //    return minIndex;
+        //}
 
         //сортировка по возрастанию
         public void SortAscending(int value)
@@ -291,7 +300,7 @@ namespace ListApp
             {
                 if (_array[i].CompareTo(value) == 0)
                 {
-                    RemoveByIndex(i);
+                    RemoveElementByIndex(i);
                     return i;
                 }
             }
@@ -308,7 +317,7 @@ namespace ListApp
             {
                 if (_array[i].CompareTo(value) == 0)
                 {
-                    RemoveByIndex(i);
+                    RemoveElementByIndex(i);
                     --i;
                     ++countRemoveElements;
                 }
@@ -359,6 +368,11 @@ namespace ListApp
             }
         }
 
+        public void SortAscending(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
         //добавление списка по индексу
 
         public void AddArrayListByIndex(ArrayList list, int index)
@@ -370,7 +384,7 @@ namespace ListApp
                     Length += list.Length;
                     if (Length >= _array.Length)
                     {
-                        UpSize();
+                        ReSize();
                     }
 
                     int n = list.Length;
@@ -402,16 +416,10 @@ namespace ListApp
             }
         }
 
-
-
-
-
-
-
-
-
-
-
+        public void DescendingSort(bool v)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string ToString()
         {
@@ -424,31 +432,24 @@ namespace ListApp
             return result;
         }
 
+
         public override bool Equals(object obj)
         {
-            if (obj is ArrayList)
+            ArrayList list = (ArrayList)obj;
+            if (this.Length != list.Length)
             {
-                ArrayList list = (ArrayList)obj;
-                bool result = true;
-                if (this.Length == list.Length)
-                {
-                    for (int i = 0; i < Length; i++)
-                    {
-                        if (!this._array[i].Equals(list._array[i]))
-                        {
-                            result = false;
-                        }
-                    }
-                }
-                else
-                {
-                    result = false;
-                }
-
-                return result;
+                return false;
             }
 
-            return false;
+            for (int i = 0; i < Length; i++)
+            {
+                if (this._array[i] != list._array[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
 
@@ -456,6 +457,7 @@ namespace ListApp
 
         private void Swap(ref int a, ref int b)
         {
+            int temp = 0;
             temp = a;
             a = b;
             b = temp;
@@ -472,12 +474,12 @@ namespace ListApp
 
         private void ReSize()
         {
-            if ((Lenght >= _array.Length) || (Lenght <= _array.Length / 2))
+            if ((Length >= _array.Length) || (Length <= _array.Length / 2))
             {
                 int newLenght = (int)(_array.Length * 1.33 + 1);
                 int[] tmpArray = new int[newLenght];
 
-                for (int i = 0; i < Lenght; i++)
+                for (int i = 0; i < Length; i++)
                 {
                     tmpArray[i] = _array[i];
                 }
@@ -494,3 +496,4 @@ namespace ListApp
 
         }
     }
+}
