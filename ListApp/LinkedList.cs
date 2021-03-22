@@ -74,9 +74,6 @@ namespace List
 
 
 
-
-
-
         //добавление значения в конец
         public void Add(int value)
         {
@@ -111,7 +108,7 @@ namespace List
         //удаление из начала одного элемента
         public void RemoveElementFromStart()
         {
-           
+            _root = _root.Next;
         }
 
         //удаление по индексу одного элемента
@@ -243,5 +240,56 @@ namespace List
         //добавление списка по индексу
         public void AddArrayListByIndex(ArrayList list, int index)
         { }
+
+
+
+
+        public override string ToString()
+        {
+            if (Length != 0)
+            {
+                Node current = _root;
+                string s = current.Value + " ";
+
+                while (current.Next! is null)
+                {
+                    current = current.Next;
+                    s += current.Value + " ";
+                }
+                return s;
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
+
+
+
+        public override bool Equals(object obj)
+        {
+            LinkedList list = (LinkedList)obj;
+
+            if(this.Length!=list.Length)
+            {
+                return false;
+            }
+            Node currentThis = this._root;
+            Node currentList = list._root;
+
+            do
+            {
+                if (currentThis.Value != currentList.Value)
+                {
+                    return false;
+                }
+                currentList = currentList.Next;
+                currentThis = currentThis.Next;
+            }
+            while (!(currentThis.Next is null));
+
+            return true;
+
+        }
     }
 }
