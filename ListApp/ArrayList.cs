@@ -2,7 +2,9 @@
 
 namespace List
 {
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     public class ArrayList
+#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
 
         public int Length { get; private set; }
@@ -199,27 +201,27 @@ namespace List
         }
 
 
-//первый индекс по значению
-public int SearchFirstIndexByValue(int value)
-{
-    if (Length != 0)
-    {
-        for (int i = 0; i < Length; i++)
+        //первый индекс по значению
+        public int SearchFirstIndexByValue(int value)
         {
-            if (_array[i].CompareTo(value) == 0)
+            if (Length != 0)
             {
-                return i;
+                for (int i = 0; i < Length; i++)
+                {
+                    if (_array[i].CompareTo(value) == 0)
+                    {
+                        return i;
+                    }
+                }
             }
+
+            return -1;
+
         }
-    }
 
-    return -1;
+        //реверс(123 -> 321)
 
-}
-
-//реверс(123 -> 321)
-
- public void ReverseArray(int value)
+        public void ReverseArray(int value)
         {
             int temp;
             int swapIndex;
@@ -301,31 +303,31 @@ public int SearchFirstIndexByValue(int value)
 
         //сортировка по возрастанию
         public void SortAscending(int value)
-{
-
-}
-
-//сортировка по убыванию
-public void DescendingSort(int value)
-{
-
-}
-
-//удаление по значению первого(?вернуть индекс)
-
-public int RemoveElementByValue(int value)
-{
-    for (int i = 0; i < Length; i++)
-    {
-        if (_array[i].CompareTo(value) == 0)
         {
-            RemoveElementByIndex(i);
-            return i;
-        }
-    }
 
-    return -1;
-}
+        }
+
+        //сортировка по убыванию
+        public void DescendingSort(int value)
+        {
+
+        }
+
+        //удаление по значению первого(?вернуть индекс)
+
+        public int RemoveElementByValue(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i].CompareTo(value) == 0)
+                {
+                    RemoveElementByIndex(i);
+                    return i;
+                }
+            }
+
+            return -1;
+        }
 
         public int SearchIndexMaxElement(object value)
         {
@@ -335,185 +337,185 @@ public int RemoveElementByValue(int value)
         //удаление по значению всех(?вернуть кол-во)
 
         public int RemoveAllElementsByValue(int value)
-{
-    int countRemoveElements = 0;
-    for (int i = 0; i < Length; i++)
-    {
-        if (_array[i].CompareTo(value) == 0)
         {
-            RemoveElementByIndex(i);
-            --i;
-            ++countRemoveElements;
-        }
-    }
-
-    return countRemoveElements;
-}
-
-
-
-
-
-
-
-
-
-//3 конструктора(пустой, на основе одного элемента, на основе массива )
-//добавление списка(вашего самодельного) в конец
-
-
-
-
-
-public void AddArrayList(ArrayList list)
-{
-    if (list != null && list.Length != 0)
-    {
-        int lastIndex = Length;
-        AddArrayListByIndex(list, lastIndex);
-    }
-    else
-    {
-        throw new ArgumentException("The list contains no elements");
-    }
-}
-//добавление списка в начало
-
-public void AddArrayListToStart(ArrayList list)
-{
-    if (list != null && list.Length != 0)
-    {
-        int firstIndex = 0;
-        AddArrayListByIndex(list, firstIndex);
-    }
-    else
-    {
-        throw new ArgumentException("The list contains no elements");
-    }
-}
-
-public void SortAscending(bool v)
-{
-    throw new NotImplementedException();
-}
-
-//добавление списка по индексу
-
-public void AddArrayListByIndex(ArrayList list, int index)
-{
-    if (list != null && list.Length != 0)
-    {
-        if (index >= 0 && index <= Length)
-        {
-            Length += list.Length;
-            if (Length >= _array.Length)
+            int countRemoveElements = 0;
+            for (int i = 0; i < Length; i++)
             {
-                ReSize();
-            }
-
-            int n = list.Length;
-            for (int i = Length - 1; i >= index; i--)
-            {
-                if (i + n < _array.Length)
+                if (_array[i].CompareTo(value) == 0)
                 {
-                    _array[i + n] = _array[i];
+                    RemoveElementByIndex(i);
+                    --i;
+                    ++countRemoveElements;
                 }
             }
 
-            int count = 0;
-            for (int i = index; i < Length; i++)
+            return countRemoveElements;
+        }
+
+
+
+
+
+
+
+
+
+        //3 конструктора(пустой, на основе одного элемента, на основе массива )
+        //добавление списка(вашего самодельного) в конец
+
+
+
+
+
+        public void AddArrayList(ArrayList list)
+        {
+            if (list != null && list.Length != 0)
             {
-                if (count < list.Length)
-                {
-                    _array[i] = list[count++];
-                }
+                int lastIndex = Length;
+                AddArrayListByIndex(list, lastIndex);
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
             }
         }
-        else
+        //добавление списка в начало
+
+        public void AddArrayListToStart(ArrayList list)
         {
-            throw new IndexOutOfRangeException();
-        }
-    }
-    else
-    {
-        throw new ArgumentException("The list contains no elements");
-    }
-}
-
-public void DescendingSort(bool v)
-{
-    throw new NotImplementedException();
-}
-
-public override string ToString()
-{
-    string result = string.Empty;
-    for (int i = 0; i < Length; i++)
-    {
-        result += _array[i] + " ";
-    }
-
-    return result;
-}
-
-
-public override bool Equals(object obj)
-{
-    ArrayList list = (ArrayList)obj;
-    if (this.Length != list.Length)
-    {
-        return false;
-    }
-
-    for (int i = 0; i < Length; i++)
-    {
-        if (this._array[i] != list._array[i])
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
-public void Remove()
-{
-    int lastIndex = Length - 1;
-    RemoveElementByIndex(lastIndex);
-}
-
-private void Swap(ref int a, ref int b)
-{
-    int temp = 0;
-    temp = a;
-    a = b;
-    b = temp;
-}
-//private void UpSize()
-//{
-//    int newLength = (int)(_array.Length * 1.33d + 1);
-//    int[] tmpArray = new int[newLength];
-//    for (int i = 0; i < _array.Length; i++)
-//    {
-//        tmpArray[i] = _array[i];
-//    }
-//}
-
-private void ReSize()
-{
-    if ((Length >= _array.Length) || (Length <= _array.Length / 2))
-    {
-        int newLenght = (int)(_array.Length * 1.33 + 1);
-        int[] tmpArray = new int[newLenght];
-
-        for (int i = 0; i < Length; i++)
-        {
-            tmpArray[i] = _array[i];
+            if (list != null && list.Length != 0)
+            {
+                int firstIndex = 0;
+                AddArrayListByIndex(list, firstIndex);
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
+            }
         }
 
-        _array = tmpArray;
-    }
+        public void SortAscending(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
+        //добавление списка по индексу
+
+        public void AddArrayListByIndex(ArrayList list, int index)
+        {
+            if (list != null && list.Length != 0)
+            {
+                if (index >= 0 && index <= Length)
+                {
+                    Length += list.Length;
+                    if (Length >= _array.Length)
+                    {
+                        ReSize();
+                    }
+
+                    int n = list.Length;
+                    for (int i = Length - 1; i >= index; i--)
+                    {
+                        if (i + n < _array.Length)
+                        {
+                            _array[i + n] = _array[i];
+                        }
+                    }
+
+                    int count = 0;
+                    for (int i = index; i < Length; i++)
+                    {
+                        if (count < list.Length)
+                        {
+                            _array[i] = list[count++];
+                        }
+                    }
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
+            }
+            else
+            {
+                throw new ArgumentException("The list contains no elements");
+            }
+        }
+
+        public void DescendingSort(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            string result = string.Empty;
+            for (int i = 0; i < Length; i++)
+            {
+                result += _array[i] + " ";
+            }
+
+            return result;
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            ArrayList list = (ArrayList)obj;
+            if (this.Length != list.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (this._array[i] != list._array[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        public void Remove()
+        {
+            int lastIndex = Length - 1;
+            RemoveElementByIndex(lastIndex);
+        }
+
+        private void Swap(ref int a, ref int b)
+        {
+            int temp = 0;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        //private void UpSize()
+        //{
+        //    int newLength = (int)(_array.Length * 1.33d + 1);
+        //    int[] tmpArray = new int[newLength];
+        //    for (int i = 0; i < _array.Length; i++)
+        //    {
+        //        tmpArray[i] = _array[i];
+        //    }
+        //}
+
+        private void ReSize()
+        {
+            if ((Length >= _array.Length) || (Length <= _array.Length / 2))
+            {
+                int newLenght = (int)(_array.Length * 1.33 + 1);
+                int[] tmpArray = new int[newLenght];
+
+                for (int i = 0; i < Length; i++)
+                {
+                    tmpArray[i] = _array[i];
+                }
+
+                _array = tmpArray;
+            }
 
 
 
@@ -522,6 +524,6 @@ private void ReSize()
 
 
 
-}
+        }
     }
 }
