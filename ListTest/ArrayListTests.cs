@@ -1,9 +1,9 @@
 using NUnit.Framework;
 
-namespace ListApp.Tests
+namespace List.Tests
 {
 
-    public class ArrayListTests
+    public class ListTests
     {
 
         [TestCase(3, new int[] { 1, 2 }, new int[] { 1, 2, 3 })]
@@ -191,18 +191,18 @@ namespace ListApp.Tests
         //}
 
 
-        //[TestCase(new int[] { 0, 1, 2, 3 }, 3)]
-        //[TestCase(new int[] { 9, 8, 7 }, 0)]
-        //[TestCase(new int[] { 0 }, 0)]
-        //[TestCase(new int[] { 5, 8, 6 }, 1)]
-        //public void Search_IndexMaxElement(int[] actualArray, int expected)
-        //{
-        //    ArrayList array = new ArrayList(actualArray);
+        [TestCase(new int[] { 0, 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 9, 8, 7 }, 0)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { 5, 8, 6 }, 1)]
+        public void Search_IndexMaxElement(int[] actualArray, int expected)
+        {
+            ArrayList array = new ArrayList(actualArray);
 
-        //    int actual = array.SearchIndexMaxElement();
+            int actual = array.SearchIndexMaxElement(value);
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+            Assert.AreEqual(expected, actual);
+        }
 
 
         //[TestCase(new int[] { 0, 1, 2, 3 }, 0)]

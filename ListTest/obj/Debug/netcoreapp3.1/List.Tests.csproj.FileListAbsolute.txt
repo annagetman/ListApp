@@ -1,0 +1,4 @@
+G:\ann\work\ListApp\ListTest\obj\Debug\netcoreapp3.1\List.Tests.csprojAssemblyReference.cache
+G:\ann\work\ListApp\ListTest\obj\Debug\netcoreapp3.1\List.Tests.AssemblyInfoInputs.cache
+G:\ann\work\ListApp\ListTest\obj\Debug\netcoreapp3.1\List.Tests.AssemblyInfo.cs
+G:\ann\work\ListApp\ListTest\obj\Debug\netcoreapp3.1\List.Tests.csproj.CoreCompileInputs.cache
