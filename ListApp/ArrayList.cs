@@ -221,7 +221,7 @@ namespace List
 
         //реверс(123 -> 321)
 
-        public void ReverseArray(int value)
+        public void ReverseArray()
         {
             int temp;
             int swapIndex;
@@ -237,35 +237,23 @@ namespace List
             }
         }
 
+
         //поиск значения максимального элемента
-        //public void SearchValueMaxElement(int value)
-        //{
-        //    for (int i = 1; i < arr1.Length; i++)
-        //    {
-        //        if (arr1[i] > max)
-        //        {
-        //            max = arr1[i];
-        //        }
-        //    }
-        //    return max;
-        //}
+        public int SearchValueMaxElement(int value)
+        {
+          
+            return SearchIndexMaxElement();
+        }
 
         //поиск значения минимального элемента
-        //public void SearchValueMinElement(int value)
-        //{
-        //    for (int i = 1; i < arr1.Length; i++)
-        //    {
-        //        if (arr1[i] < min)
-        //        {
-        //            minIndex = i;
-        //        }
-        //    }
-        //    return minIndex;
+        public int SearchValueMinElement(int value)
+        {
+            return SearchIndexMaxElement();
 
-        //}
+        }
 
         //поиск индекс максимального элемента
-        public int SearchIndexMaxElement(int value)
+        public int SearchIndexMaxElement()
         {
             if (!(Length == 0))
             {
@@ -282,24 +270,36 @@ namespace List
 
                 return maxIndexOfElement;
             }
-
-            throw new ArgumentException();
-
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
         //поиск индекс минимального элемента
 
-        //public void SearchIndexMinElement(int value)
-        //{
-        //    for (int i = 1; i < arr1.Length; i++)
-        //    {
-        //        if (arr1[i] < min)
-        //        {
-        //            minIndex = i;
-        //        }
-        //    }
-        //    return minIndex;
-        //}
+        public int SearchIndexMinElement()
+        {
+            if (!(Length == 0))
+            {
+
+                int minIndexOfElement = 0;
+
+                for (int i = 1; i < Length; i++)
+                {
+                    if (_array[minIndexOfElement] > _array[i])
+                    {
+                        minIndexOfElement = i;
+                    }
+                }
+
+                return minIndexOfElement;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
 
         //сортировка по возрастанию
         public void SortAscending(int value)
@@ -374,11 +374,8 @@ namespace List
                 int lastIndex = Length;
                 AddArrayListByIndex(list, lastIndex);
             }
-            else
-            {
-                throw new ArgumentException("The list contains no elements");
-            }
         }
+
         //добавление списка в начало
 
         public void AddArrayListToStart(ArrayList list)
@@ -388,16 +385,8 @@ namespace List
                 int firstIndex = 0;
                 AddArrayListByIndex(list, firstIndex);
             }
-            else
-            {
-                throw new ArgumentException("The list contains no elements");
-            }
         }
 
-        public void SortAscending(bool v)
-        {
-            throw new NotImplementedException();
-        }
 
         //добавление списка по индексу
 
@@ -413,12 +402,12 @@ namespace List
                         ReSize();
                     }
 
-                    int n = list.Length;
+                    int tempLength = list.Length;
                     for (int i = Length - 1; i >= index; i--)
                     {
-                        if (i + n < _array.Length)
+                        if (i + tempLength < _array.Length)
                         {
-                            _array[i + n] = _array[i];
+                            _array[i + tempLength] = _array[i];
                         }
                     }
 
@@ -431,16 +420,19 @@ namespace List
                         }
                     }
                 }
+
                 else
                 {
                     throw new IndexOutOfRangeException();
                 }
             }
+
             else
             {
-                throw new ArgumentException("The list contains no elements");
+                throw new ArgumentException("List no contains elements");
             }
         }
+
 
         public void DescendingSort(bool v)
         {
@@ -479,12 +471,6 @@ namespace List
         }
 
 
-        public void Remove()
-        {
-            int lastIndex = Length - 1;
-            RemoveElementByIndex(lastIndex);
-        }
-
         private void Swap(ref int a, ref int b)
         {
             int temp = 0;
@@ -492,15 +478,7 @@ namespace List
             a = b;
             b = temp;
         }
-        //private void UpSize()
-        //{
-        //    int newLength = (int)(_array.Length * 1.33d + 1);
-        //    int[] tmpArray = new int[newLength];
-        //    for (int i = 0; i < _array.Length; i++)
-        //    {
-        //        tmpArray[i] = _array[i];
-        //    }
-        //}
+       
 
         private void ReSize()
         {

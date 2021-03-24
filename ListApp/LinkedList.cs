@@ -265,7 +265,6 @@ namespace List
         }
 
 
-
         public override bool Equals(object obj)
         {
             LinkedList list = (LinkedList)obj;
