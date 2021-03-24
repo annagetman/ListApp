@@ -101,20 +101,31 @@ namespace List
 
         public void AddValueByIndex(int value, int index)
         {
-            if (index < Length && index >= 0)
-            {
-                ReSize();
 
-                for (int i = Length - 1; i <= index; i--)
+            if (index <= Length && index >= 0)
+            {
+
+                if (Length >= _array.Length)
+                {
+                    ReSize();
+                }
+
+                for (int i = Length - 1; i >= index; i--)
                 {
                     _array[i + 1] = _array[i];
                 }
 
                 _array[index] = value;
+
                 ++Length;
+
+
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
             }
 
-            throw new Exception("Error");
         }
 
         //удаление из конца одного элемента
@@ -130,14 +141,18 @@ namespace List
         //удаление из начала одного элемента
         public void RemoveElementFromStart()
         {
-            ReSize();
 
-            for (int i = Length - 1; i >= 0; i--)
+            for (int i = 1; i <= Length; i++)
             {
-                _array[i + 1] = _array[i];
+                _array[i - 1] = _array[i];
             }
 
-            Length--;
+            if (!(Length == 0))
+            {
+                Length--;
+            }
+
+            ReSize();
         }
 
         //удаление по индексу одного элемента
@@ -302,15 +317,46 @@ namespace List
         }
 
         //сортировка по возрастанию
-        public void SortAscending(int value)
+        public void SortAscending()
         {
+            int j;
+            int temp;
 
+            for (int i = 1; i < Length; i++)
+            {
+                j = i;
+                temp = _array[i];
+
+                while (j > 0 && temp < _array[j - 1])
+                {
+                    _array[j] = _array[j - 1];
+                    j--;
+                }
+
+                _array[j] = temp;
+            }
         }
 
-        //сортировка по убыванию
-        public void DescendingSort(int value)
-        {
 
+        //сортировка по убыванию
+        public void DescendingSort()
+        {
+            int j;
+            int temp;
+
+            for (int i = 1; i < Length; i++)
+            {
+                j = i;
+                temp = _array[i];
+
+                while (j > 0 && temp > _array[j - 1])
+                {
+                    _array[j] = _array[j - 1];
+                    j--;
+                }
+
+                _array[j] = temp;
+            }
         }
 
         //удаление по значению первого(?вернуть индекс)
@@ -329,6 +375,7 @@ namespace List
             return -1;
         }
 
+    
         public int SearchIndexMaxElement(object value)
         {
             throw new NotImplementedException();
@@ -353,20 +400,6 @@ namespace List
         }
 
 
-
-
-
-
-
-
-
-        //3 конструктора(пустой, на основе одного элемента, на основе массива )
-        //добавление списка(вашего самодельного) в конец
-
-
-
-
-
         public void AddArrayList(ArrayList list)
         {
             if (list != null && list.Length != 0)
@@ -376,6 +409,7 @@ namespace List
             }
         }
 
+      
         //добавление списка в начало
 
         public void AddArrayListToStart(ArrayList list)

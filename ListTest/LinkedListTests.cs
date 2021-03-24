@@ -26,9 +26,9 @@ namespace List.Tests
 
 
 
-        [TestCase(3, new int[] { 1, 2 }, new int[] { 3, 1, 2, 3 })]
-        [TestCase(5, new int[] { 1, 2, 3, 4 }, new int[] { 5, 1, 2, 3, 4, 5 })]
-        [TestCase(1, new int[] { 1, 2, 35 }, new int[] { 1, 1, 2, 35, 1 })]
+        [TestCase(3, new int[] { 1, 2 }, new int[] { 3, 1, 2})]
+        [TestCase(5, new int[] { 1, 2, 3, 4 }, new int[] { 5, 1, 2, 3, 4 })]
+        [TestCase(1, new int[] { 1, 2, 35 }, new int[] { 1, 1, 2, 35,  })]
         public void Add_ValueToStart(int value, int[] actualArray, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
@@ -237,7 +237,7 @@ namespace List.Tests
             ArrayList actual = new ArrayList(actualArray);
             ArrayList expected = new ArrayList(expectedArray);
 
-            actual.SortAscending(false);
+            actual.SortAscending();
 
             Assert.AreEqual(expected, actual);
         }
@@ -247,17 +247,15 @@ namespace List.Tests
         [TestCase(new int[] { 2, 6, 5 }, new int[] { 6, 5, 2 })]
         [TestCase(new int[] { }, new int[] { })]
 
-        public void DescendingSort(int[] actualArray, int[] expectedArray)
+        public void Descending_Sort(int[] actualArray, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
             ArrayList expected = new ArrayList(expectedArray);
 
-            actual.DescendingSort(true);
+            actual.DescendingSort();
 
             Assert.AreEqual(expected, actual);
         }
-
-
 
 
 
@@ -274,17 +272,7 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1 }, new int[] { 1, 1, 2, 3, 4, 5 })]
-        public void AddArrayListToStart(int[] actualArray, int[] expectedArray)
-        {
-            ArrayList actual = new ArrayList(actualArray);
-            ArrayList expected = new ArrayList(expectedArray);
-            ArrayList addList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
-
-            actual.AddArrayListToStart(addList);
-
-            Assert.AreEqual(expected, actual);
-        }
+       
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 77, 77, 77, 1, 2, 3 })]
         [TestCase(1, new int[] { 1, 2, 3 }, new int[] { 1, 77, 77, 77, 2, 3 })]

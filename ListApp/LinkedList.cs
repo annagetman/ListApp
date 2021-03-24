@@ -86,22 +86,42 @@ namespace List
 
         public void AddToStart(int value)
         {
-            
+            Length++;
+
+            Node first = new Node(value);
+
+            first.Next = _root;
+            _root = first;
         }
+
 
         //добавление значения по индексу
 
         public void AddValueByIndex(int value, int index)
         {
-           
-          
+            if (Length != 0)
+            {
+                Node ByIndex = new Node(value);
+
+                Node current = GetNodeByIndex(index - 1);
+
+                ByIndex.Next = current.Next;
+                current.Next = ByIndex;
+            }
+            else
+            {
+                _root = new Node(value);
+                _tail = _root;
+            }
+
+            Length++;
         }
 
         //удаление из конца одного элемента
 
         public void RemoveElementFromEnd()
         {
-          
+            RemoveElementByIndex(Length-1);
 
         }
 
@@ -115,8 +135,16 @@ namespace List
 
         public void RemoveElementByIndex(int index)
         {
-          
+            Node current = _root;
 
+            for (int i = 1; i < index; i++)
+            {
+                current = current.Next;
+            }
+
+            current.Next = current.Next.Next;
+
+            Length--;
         }
 
 
@@ -214,35 +242,45 @@ namespace List
         }
 
 
-
-        //3 конструктора(пустой, на основе одного элемента, на основе массива )
-
-
-
         //добавление списка(вашего самодельного) в конец
         public void AddArrayList(ArrayList list)
         {
            
         }
+
         //добавление списка в начало
 
         public void AddArrayListToStart(ArrayList list)
         {
            
         }
-
-        public void SortAscending(bool v)
-        {
-            
-        }
-
-
+       
         //добавление списка по индексу
         public void AddArrayListByIndex(ArrayList list, int index)
         { }
 
 
 
+
+
+
+
+
+
+        public void SortAscending(bool v)
+        {
+
+        }
+        private Node GetNodeByIndex(int index)
+        {
+            Node current = _root;
+
+            for (int i = 1; i <= index; i++)
+            {
+                current = current.Next;
+            }
+            return current;
+        }
 
         public override string ToString()
         {
@@ -267,28 +305,34 @@ namespace List
 
         public override bool Equals(object obj)
         {
-            LinkedList list = (LinkedList)obj;
-
-            if(this.Length!=list.Length)
+            if (obj is LinkedList || obj is null)
             {
-                return false;
-            }
-            Node currentThis = this._root;
-            Node currentList = list._root;
+                LinkedList list = (LinkedList)obj;
+                bool isEqual = false;
 
-            do
-            {
-                if (currentThis.Value != currentList.Value)
+                if (this.Length == list.Length)
                 {
-                    return false;
+                    isEqual = true;
+                    Node currentThis = this._root;
+                    Node currentList = list._root;
+
+                    while (!(currentThis is null))
+                    {
+                        if (currentThis.Value != currentList.Value)
+                        {
+                            isEqual = false;
+                            break;
+                        }
+
+                        currentThis = currentThis.Next;
+                        currentList = currentList.Next;
+                    }
                 }
-                currentList = currentList.Next;
-                currentThis = currentThis.Next;
+
+                return isEqual;
             }
-            while (!(currentThis.Next is null));
 
-            return true;
-
+            throw new ArgumentException("obj is not LinkedList");
         }
     }
 }

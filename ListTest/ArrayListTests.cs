@@ -5,6 +5,7 @@ namespace List.Tests
 
     public class ArrayListTests
     {
+        private const bool V = false;
 
         [TestCase(3, new int[] { 1, 2 }, new int[] { 1, 2, 3 })]
         [TestCase(5, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 5 })]
@@ -20,9 +21,9 @@ namespace List.Tests
         }
 
 
-        [TestCase(3, new int[] { 1, 2 }, new int[] { 3, 1, 2, 3 })]
-        [TestCase(5, new int[] { 1, 2, 3, 4 }, new int[] { 5, 1, 2, 3, 4, 5 })]
-        [TestCase(1, new int[] { 1, 2, 35 }, new int[] { 1, 1, 2, 35, 1 })]
+        [TestCase(3, new int[] { 1, 2 }, new int[] { 3, 1, 2 })]
+        [TestCase(5, new int[] { 1, 2, 3, 4 }, new int[] { 5, 1, 2, 3, 4 })]
+        [TestCase(1, new int[] { 1, 2, 35 }, new int[] { 1, 1, 2, 35 })]
         public void Add_ValueToStart(int value, int[] actualArray, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
@@ -150,13 +151,13 @@ namespace List.Tests
 
         [TestCase(new int[] { 1, 2, 3 }, new int[] { 3, 2, 1 })]
         [TestCase(new int[] { 0, 0, }, new int[] { 0, 0, })]
-        [TestCase(new int[] { 1, 2 }, new int[] { 2, 1 })]
+        [TestCase(new int[] { 2, 1 }, new int[] { 1, 2 })]
         public void Reverse_Array(int[] actualArray, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
             ArrayList expected = new ArrayList(expectedArray);
 
-            //actual.ReverseArray();
+            actual.ReverseArray();
 
             Assert.AreEqual(expected, actual);
         }
@@ -220,9 +221,6 @@ namespace List.Tests
 
 
 
-
-
-
         [TestCase(new int[] { 3, 1, 8, 4, 6, }, new int[] { 1, 3, 4, 6, 8 })]
         [TestCase(new int[] { }, new int[] { })]
         [TestCase(new int[] { 7 }, new int[] { 7 })]
@@ -231,7 +229,7 @@ namespace List.Tests
             ArrayList actual = new ArrayList(actualArray);
             ArrayList expected = new ArrayList(expectedArray);
 
-            actual.SortAscending(false);
+            actual.SortAscending();
 
             Assert.AreEqual(expected, actual);
         }
@@ -246,27 +244,26 @@ namespace List.Tests
             ArrayList actual = new ArrayList(actualArray);
             ArrayList expected = new ArrayList(expectedArray);
 
-            actual.DescendingSort(true);
+            actual.DescendingSort();
 
             Assert.AreEqual(expected, actual);
         }
 
 
 
-
-
-
-        [TestCase(new int[] { 1 }, new int[] { 1, 2, 3, 4, 5, 1 })]
-        public void Add_ArrayList(int[] actualArray, int[] expectedArray)
+        [TestCase(new int[] { 1 }, new int[] { 2,3,4,5 }, new int[] { 2, 3, 4, 5,1 })]
+        public void Add_ArrayList(int[] actualArray, int[] arrayTmp, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
-            ArrayList expected = new ArrayList(expectedArray);
-            ArrayList addList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            ArrayList list = new ArrayList(arrayTmp);
+            ArrayList expectedArrayList = new ArrayList(expectedArray);
 
-            actual.AddArrayList(addList);
+            actual.AddArrayList(list);
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedArrayList, actual);
         }
+
+   
 
         [TestCase(new int[] { 1 }, new int[] { 1, 1, 2, 3, 4, 5 })]
         public void AddArrayListToStart(int[] actualArray, int[] expectedArray)
@@ -282,7 +279,7 @@ namespace List.Tests
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 77, 77, 77, 1, 2, 3 })]
         [TestCase(1, new int[] { 1, 2, 3 }, new int[] { 1, 77, 77, 77, 2, 3 })]
-        [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 77, 77, 77 })]
+        [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1, 2, 77, 77, 77, 3 })]
 
         public void Add_ArrayListByIndex(int index, int[] actualArray, int[] expectedArray)
         {
