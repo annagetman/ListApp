@@ -129,6 +129,7 @@ namespace List
         public void RemoveElementFromStart()
         {
             _root = _root.Next;
+            Length--;
         }
 
         //удаление по индексу одного элемента
@@ -151,28 +152,119 @@ namespace List
         //удаление из конца N элементов
         public void RemoveNElementsFromEnd(int Nvalue)
         {
-           
+            if (Nvalue != Length)
+            {
+                Node current = GetNodeByIndex(Length - Nvalue);
+                current.Next = _tail;
+
+                Length -= Nvalue;
+            }
+            else
+            {
+                Length = 0;
+                _root = null;
+                _tail = null;
+            }
         }
 
 
         //удаление из начала N элементов
         public void RemoveNElementsFromStart(int Nvalue)
         {
-          
+            if (Nvalue != Length)
+            {
+                Node current = GetNodeByIndex(Nvalue - 1);
+                _root = current.Next;
 
+                Length -= Nvalue;
+            }
+            else
+            {
+                Length = 0;
+                _root = null;
+                _tail = null;
+            }
         }
 
         //удаление по индексу N элементов
         public void RemoveNElementByIndex(int index, int Nvalue)
         {
-            
+            if (index >= 0 && index < Length)
+            {
+                if (index == 0)
+                {
+                    RemoveNElementsFromStart(Nvalue);
+                }
+
+                else if (Nvalue == Length - 1)
+                {
+                    RemoveNElementsFromEnd(Nvalue);
+                }
+
+                else if (Nvalue > 0)
+                {
+                    if (!(Nvalue + index >= Length))
+                    {
+                        Node startNode = GetNodeByIndex(index - 1);
+                        Node finishNode = GetNodeByIndex(index + Nvalue);
+
+                        startNode.Next = finishNode;
+
+                        Length -= Nvalue;
+                    }
+                    else
+                    {
+                        Node current = GetNodeByIndex(index);
+
+                        current.Next = null;
+                        _tail = current;
+                        Length = index;
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid value!");
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("Error!");
+            }
         }
 
 
+
         //первый индекс по значению
-        public void SearchFirstIndexByValue(int value)
+        public int SearchFirstIndexByValue(int value)
         {
-           
+            Node current = _root;
+
+            for (int i = 0; i < Length; i++)
+            {
+                if (current.Value == value)
+                {
+                    return i;
+                }
+
+                current = current.Next;
+            }
+
+            return -1;
+        }
+
+
+        public void GetChangeByIndex(int index, int value)
+        {
+            if (index >= 0 && index <= Length)
+            {
+                Node current = GetNodeByIndex(index);
+
+                current.Value = value;
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("Error");
+            }
 
         }
 
@@ -184,30 +276,62 @@ namespace List
         }
 
         //поиск значения максимального элемента
-        public void SearchValueMaxElement(int value)
+        public int SearchValueMaxElement()
         {
+            return SearchIndexMaxElement();
 
         }
 
         //поиск значения минимального элемента
-        public void SearchValueMinElement(int value)
+        public int SearchValueMinElement()
         {
-            
+            return SearchIndexMinElement(); 
 
         }
 
         //поиск индекс максимального элемента
-        public void SearchIndexMaxElement(int value)
+        public int SearchIndexMaxElement()
         {
-           
+            Node current = _root;
+            int maxIndex = 0;
+            int temp = 0;
 
+            for (int i = 0; i < Length; i++)
+            {
+                if (temp < current.Value)
+                {
+                    maxIndex = i;
+                    temp = current.Value;
+                }
+
+                current = current.Next;
+            }
+
+            return maxIndex;
         }
-
         //поиск индекс минимального элемента
 
-        public void SearchIndexMinElement(int value)
+        public int SearchIndexMinElement()
         {
-            
+            {
+
+                Node current = _root;
+                int minIndex = 0;
+                int temp = current.Value;
+
+                for (int i = 0; i < Length; i++)
+                {
+                    if (temp > current.Value)
+                    {
+                        minIndex = i;
+                        temp = current.Value;
+                    }
+
+                    current = current.Next;
+                }
+
+                return minIndex;
+            }
         }
 
         //сортировка по возрастанию
@@ -258,11 +382,6 @@ namespace List
         //добавление списка по индексу
         public void AddArrayListByIndex(ArrayList list, int index)
         { }
-
-
-
-
-
 
 
 
