@@ -14,7 +14,7 @@ namespace List
             {
                 Node current = _root;
 
-                for(int i = 1; i<=index; i++)
+                for (int i = 1; i <= index; i++)
                 {
                     current = current.Next;
                 }
@@ -55,7 +55,7 @@ namespace List
         {
             Length = values.Length;
 
-            if  (values.Length != 0)
+            if (values.Length != 0)
             {
                 _root = new Node(values[0]);
                 _tail = _root;
@@ -121,7 +121,7 @@ namespace List
 
         public void RemoveElementFromEnd()
         {
-            RemoveElementByIndex(Length-1);
+            RemoveElementByIndex(Length - 1);
 
         }
 
@@ -270,10 +270,10 @@ namespace List
 
         //реверс(123 -> 321)
 
-        public void ReverseArray(int value)
-        {
-            
-        }
+        //public void ReverseLinkedList()
+        //{
+
+        //}
 
         //поиск значения максимального элемента
         public int SearchValueMaxElement()
@@ -285,7 +285,7 @@ namespace List
         //поиск значения минимального элемента
         public int SearchValueMinElement()
         {
-            return SearchIndexMinElement(); 
+            return SearchIndexMinElement();
 
         }
 
@@ -335,61 +335,56 @@ namespace List
         }
 
         //сортировка по возрастанию
-        public void SortAscending(int value)
-        {
+        //public void SortAscending(int value)
+        //{
 
-        }
+        //}
 
-        //сортировка по убыванию
-        public void DescendingSort(int value)
-        {
+        ////сортировка по убыванию
+        //public void DescendingSort(int value)
+        //{
 
-        }
+        //}
 
-        //удаление по значению первого(?вернуть индекс)
+        ////удаление по значению первого(?вернуть индекс)
 
-        public void RemoveElementByValue(int value)
-        {
-           
-        }
+        //public void RemoveElementByValue(int value)
+        //{
 
-        public void SearchIndexMaxElement(object value)
-        {
-            
-        }
+        //}
 
-        //удаление по значению всех(?вернуть кол-во)
+   
+        ////удаление по значению всех(?вернуть кол-во)
 
-        public void RemoveAllElementsByValue(int value)
-        {
-            
-        }
+        //public void RemoveAllElementsByValue(int value)
+        //{
+
+        //}
 
 
-        //добавление списка(вашего самодельного) в конец
-        public void AddArrayList(ArrayList list)
-        {
-           
-        }
+        ////добавление списка(вашего самодельного) в конец
+        //public void AddArrayList(ArrayList list)
+        //{
 
-        //добавление списка в начало
+        //}
 
-        public void AddArrayListToStart(ArrayList list)
-        {
-           
-        }
-       
-        //добавление списка по индексу
-        public void AddArrayListByIndex(ArrayList list, int index)
-        { }
+        ////добавление списка в начало
+
+        //public void AddArrayListToStart(ArrayList list)
+        //{
+
+        //}
+
+        ////добавление списка по индексу
+        //public void AddArrayListByIndex(ArrayList list, int index)
+        //{ }
 
 
 
 
-        public void SortAscending(bool v)
-        {
+ 
 
-        }
+
         private Node GetNodeByIndex(int index)
         {
             Node current = _root;
@@ -455,3 +450,4 @@ namespace List
         }
     }
 }
+

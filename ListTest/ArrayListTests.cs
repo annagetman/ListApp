@@ -164,32 +164,32 @@ namespace List.Tests
 
 
 
-        //[TestCase(new int[] { 0, 1, 2, 3 }, 3)]
-        //[TestCase(new int[] { 3, 4, 5 }, 5)]
-        //[TestCase(new int[] { 0 }, 0)]
-        //[TestCase(new int[] { 8, 7, 5 }, 8)]
-        //public void Search_ValueMaxElement(int[] actualArray, int expected)
-        //{
-        //    ArrayList array = new ArrayList(actualArray);
+        [TestCase(new int[] { 0, 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 3, 4, 5 }, 2)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { 8, 7, 5 }, 0)]
+        public void Search_ValueMaxElement(int[] actualArray, int expected)
+        {
+            ArrayList array = new ArrayList(actualArray);
 
-        //    int actual = array.SearchValueMaxElement();
+            int actual = array.SearchValueMaxElement();
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+            Assert.AreEqual(expected, actual);
+        }
 
 
-        //[TestCase(new int[] { 0, 1, 2, 3 }, 0)]
-        //[TestCase(new int[] { 8, 7, 6 }, 6)]
-        //[TestCase(new int[] { 0 }, 0)]
-        //[TestCase(new int[] { 3, 5, 7, 6 }, 3)]
-        //public void Search_ValueMinElement(int[] actualArray, int expected)
-        //{
-        //    ArrayList array = new ArrayList(actualArray);
+        [TestCase(new int[] { 0, 1, 2, 3 }, 0)]
+        [TestCase(new int[] { 8, 7, 6 }, 2)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { 3, 5, 7, 6 }, 0)]
+        public void Search_ValueMinElement(int[] actualArray, int expected)
+        {
+            ArrayList array = new ArrayList(actualArray);
 
-        //    int actual = array.SearchValueMinElement();
+            int actual = array.SearchValueMinElement();
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+            Assert.AreEqual(expected, actual);
+        }
 
 
         [TestCase(new int[] { 0, 1, 2, 3 }, 3)]
@@ -251,11 +251,13 @@ namespace List.Tests
 
 
 
-        [TestCase(new int[] { 1 }, new int[] { 2,3,4,5 }, new int[] { 2, 3, 4, 5,1 })]
-        public void Add_ArrayList(int[] actualArray, int[] arrayTmp, int[] expectedArray)
+        [TestCase(new int[] { 1, 2, 3, 4}, new int[] { 4, 5, 6 }, new int[] { 1, 2, 3, 4, 4, 5, 6 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 1, 2, 3, 4, 5, 6 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 8,8}, new int[] { 1, 2, 3,8,8 })]
+        public void Add_ArrayList_WhenListPassed_ThenAddList(int[] actualArray, int[] arrayForList, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
-            ArrayList list = new ArrayList(arrayTmp);
+            ArrayList list = new ArrayList(arrayForList);
             ArrayList expectedArrayList = new ArrayList(expectedArray);
 
             actual.AddArrayList(list);
@@ -263,19 +265,23 @@ namespace List.Tests
             Assert.AreEqual(expectedArrayList, actual);
         }
 
-   
 
-        [TestCase(new int[] { 1 }, new int[] { 1, 1, 2, 3, 4, 5 })]
-        public void AddArrayListToStart(int[] actualArray, int[] expectedArray)
+
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 4, 5, 6, 1, 2, 3 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 8 }, new int[] { 8, 1, 2, 3 })]
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2}, new int[] { 1, 2, 1, 2, 3 })]
+        public void AddArrayListToStart_WhenListPassed_AddArrayListToStart(int[] actualArray, int[] arrayForList, int[] expectedArray)
         {
             ArrayList actual = new ArrayList(actualArray);
-            ArrayList expected = new ArrayList(expectedArray);
-            ArrayList addList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            ArrayList list = new ArrayList(arrayForList);
+            ArrayList expectedArrayList = new ArrayList(expectedArray);
 
-            actual.AddArrayListToStart(addList);
+            actual.AddArrayListToStart(list);
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedArrayList, actual);
         }
+
+
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 77, 77, 77, 1, 2, 3 })]
         [TestCase(1, new int[] { 1, 2, 3 }, new int[] { 1, 77, 77, 77, 2, 3 })]

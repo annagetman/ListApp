@@ -185,13 +185,17 @@ namespace List
         //удаление из начала N элементов
         public void RemoveNElementsFromStart(int Nvalue)
         {
-            for (int i = Nvalue + 1; i < Length - 1; i -= Nvalue)
+            if (Nvalue < Length && Nvalue >= 0)
             {
-                _array[i + Nvalue] = _array[i];
-            }
-            Length -= Nvalue;
-            ReSize();
 
+                for (int i = Nvalue; i <= Length; i++)
+                {
+                    _array[i - Nvalue] = _array[i];
+                }
+
+                Length -= Nvalue;
+                ReSize();
+            }
         }
 
         //удаление по индексу N элементов
@@ -254,16 +258,16 @@ namespace List
 
 
         //поиск значения максимального элемента
-        public int SearchValueMaxElement(int value)
+        public int SearchValueMaxElement()
         {
           
             return SearchIndexMaxElement();
         }
 
         //поиск значения минимального элемента
-        public int SearchValueMinElement(int value)
+        public int SearchValueMinElement()
         {
-            return SearchIndexMaxElement();
+            return SearchIndexMinElement();
 
         }
 
@@ -376,10 +380,6 @@ namespace List
         }
 
     
-        public int SearchIndexMaxElement(object value)
-        {
-            throw new NotImplementedException();
-        }
 
         //удаление по значению всех(?вернуть кол-во)
 
@@ -408,6 +408,7 @@ namespace List
                 AddArrayListByIndex(list, lastIndex);
             }
         }
+
 
       
         //добавление списка в начало

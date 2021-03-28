@@ -175,9 +175,8 @@ namespace List.Tests
         //[TestCase(new int[] { 8, 7, 5 }, 8)]
         //public void Search_ValueMaxElement(int[] actualArray, int expected)
         //{
-        //    ArrayList array = new ArrayList(actualArray);
-
-        //    int actual = array.SearchValueMaxElement();
+        //    ArrayList list = new ArrayList(actualArray);
+        //    int actual = list.SearchValueMaxElement();
 
         //    Assert.AreEqual(expected, actual);
         //}
@@ -189,40 +188,39 @@ namespace List.Tests
         //[TestCase(new int[] { 3, 5, 7, 6 }, 3)]
         //public void Search_ValueMinElement(int[] actualArray, int expected)
         //{
-        //    ArrayList array = new ArrayList(actualArray);
-
-        //    int actual = array.SearchValueMinElement();
-
-        //    Assert.AreEqual(expected, actual);
-        //}
-
-
-        //[TestCase(new int[] { 0, 1, 2, 3 }, 3)]
-        //[TestCase(new int[] { 9, 8, 7 }, 0)]
-        //[TestCase(new int[] { 0 }, 0)]
-        //[TestCase(new int[] { 5, 8, 6 }, 1)]
-        //public void Search_IndexMaxElement(int[] actualArray, int expected)
-        //{
-        //    ArrayList array = new ArrayList(actualArray);
-
-        //    int actual = array.SearchIndexMaxElement();
+        //    ArrayList list = new ArrayList(actualArray);
+        //    int actual = list.SearchValueMinElement();
 
         //    Assert.AreEqual(expected, actual);
         //}
 
 
-        //[TestCase(new int[] { 0, 1, 2, 3 }, 0)]
-        //[TestCase(new int[] { 9, 8, 7 }, 2)]
-        //[TestCase(new int[] { 0 }, 0)]
-        //[TestCase(new int[] { 5, 8, 6 }, 0)]
-        //public void Search_IndexMinElement(int[] actualArray, int expected)
-        //{
-        //    ArrayList array = new ArrayList(actualArray);
+        [TestCase(new int[] { 0, 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 9, 8, 7 }, 0)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { 5, 8, 6 }, 1)]
+        public void Search_IndexMaxElement(int[] actualArray, int expected)
+        {
+            ArrayList array = new ArrayList(actualArray);
 
-        //    int actual = array.SearchIndexMinElement();
+            int actual = array.SearchIndexMaxElement();
 
-        //    Assert.AreEqual(expected, actual);
-        //}
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestCase(new int[] { 0, 1, 2, 3 }, 0)]
+        [TestCase(new int[] { 9, 8, 7 }, 2)]
+        [TestCase(new int[] { 0 }, 0)]
+        [TestCase(new int[] { 5, 8, 6 }, 0)]
+        public void Search_IndexMinElement(int[] actualArray, int expected)
+        {
+            ArrayList array = new ArrayList(actualArray);
+
+            int actual = array.SearchIndexMinElement();
+
+            Assert.AreEqual(expected, actual);
+        }
 
 
 
@@ -276,7 +274,7 @@ namespace List.Tests
 
         [TestCase(0, new int[] { 1, 2, 3 }, new int[] { 77, 77, 77, 1, 2, 3 })]
         [TestCase(1, new int[] { 1, 2, 3 }, new int[] { 1, 77, 77, 77, 2, 3 })]
-        [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1, 2, 3, 77, 77, 77 })]
+        [TestCase(2, new int[] { 1, 2, 3 }, new int[] { 1, 2, 77, 77, 77, 3 })]
 
         public void Add_ArrayListByIndex(int index, int[] actualArray, int[] expectedArray)
         {
